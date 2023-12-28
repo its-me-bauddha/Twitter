@@ -1,17 +1,21 @@
 import React from "react";
-import Image from "next/image";
+
 import {
   BsBell,
   BsBookmark,
   BsEnvelope,
   BsSearch,
   BsTwitterX,
+  BsSlashSquare,
 } from "react-icons/bs";
 import { GoHome } from "react-icons/go";
 import { BiUser } from "react-icons/bi";
-import { Inter } from "next/font/google";
+import { RiFileListLine } from "react-icons/ri";
+import { LuUsers2 } from "react-icons/lu";
+import { CiCircleMore } from "react-icons/ci";
 
-const inter = Inter({ subsets: ["latin"] });
+import FeedCard from "@/components/FeedCard";
+
 interface TwitterSidebarButton {
   title: string;
   icon: React.ReactNode;
@@ -31,27 +35,48 @@ const sidebarMenuItems: TwitterSidebarButton[] = [
     icon: <BsBell />,
   },
   {
-    title: "Message",
+    title: "Messages",
     icon: <BsEnvelope />,
+  },
+  {
+    title: "Grok",
+    icon: <BsSlashSquare />,
+  },
+  {
+    title: "Lists",
+    icon: <RiFileListLine />,
   },
   {
     title: "Bookmarks",
     icon: <BsBookmark />,
   },
+
+  {
+    title: "Communities",
+    icon: <LuUsers2 />,
+  },
+  {
+    title: "Premium",
+    icon: <BsTwitterX />,
+  },
   {
     title: "Profile",
     icon: <BiUser />,
   },
+  {
+    title: "More",
+    icon: <CiCircleMore />,
+  },
 ];
 export default function Home() {
   return (
-    <div className={inter.className}>
-      <div className="grid grid-cols-12 h-screen w-screen px-16">
-        <div className="col-span-3 pt-8  px-4">
-          <div className="text-4xl h-fit hover:bg-slate-900 rounded-full  cursor-pointer p-2.5 transition-all w-fit">
+    <div>
+      <div className="grid grid-cols-12 h-screen w-screen px-12">
+        <div className="col-span-3 pt-2  ml-24">
+          <div className="text-3xl h-fit hover:bg-slate-900 rounded-full  cursor-pointer px-5 pt-2 transition-all w-fit">
             <BsTwitterX />
           </div>
-          <div className="mt-4 text-2xl ">
+          <div className="mt-1 text-xl pr-2">
             <ul>
               {sidebarMenuItems.map((item) => (
                 <li
@@ -59,19 +84,25 @@ export default function Home() {
                   className="flex justify-start items-center gap-4 hover:bg-slate-900 rounded-full
                    cursor-pointer py-2 px-5 w-fit mt-2"
                 >
-                  <span>{item.icon}</span>
+                  <span className="text-2xl">{item.icon}</span>
                   <span>{item.title}</span>
                 </li>
               ))}
             </ul>
             <div className="mt-5 pr-5">
-              <button className="p-3 bg-[#1d9bf0] font-semibold rounded-full w-full ">
+              <button className="p-2 bg-[#1d9bf0] font-semibold rounded-full w-full ">
                 Post
               </button>
             </div>
           </div>
         </div>
-        <div className="col-span-6 border-r-[1px] border-l-[1px] border-gray-400"></div>
+        <div className="col-span-5 border-r-[1px] border-l-[1px]  border-gray-600">
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+        </div>
         <div className="col-span-3"></div>
       </div>
     </div>
